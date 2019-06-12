@@ -58,9 +58,11 @@ function cloneRepository(repository, directory) {
   execSync(command);
 }
 
-updateConfig(path.join(__dirname, '..', 'okta-hosted-login', '/src/.samples.config.js'));
-updateConfig(path.join(__dirname, '..', 'custom-login', '/src/.samples.config.js'));
+
 cloneRepository('https://github.com/okta/samples-nodejs-express-4.git', 'samples-nodejs-express-4');
 execSync(`cd ${path.join(__dirname, '..', 'samples-nodejs-express-4')} && npm install --unsafe-perm`);
+
+// TODO: remove updateConfig() when resource-server can accept env vars directly
 updateConfig(path.join(__dirname, '..', 'samples-nodejs-express-4', '.samples.config.js'));
+
 cloneRepository('https://github.com/okta/okta-oidc-tck.git', 'okta-oidc-tck');
